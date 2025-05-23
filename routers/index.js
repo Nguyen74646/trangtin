@@ -69,6 +69,9 @@ router.get('/baiviet/chitiet/:id', async (req, res) => {
 		.populate('ChuDe')
 		.populate('TaiKhoan')
 		.limit(3).exec();
+	await BaiViet.findByIdAndUpdate(id,{
+		LuotXem: bv.LuotXem + 1
+	});
 	res.render('baiviet_chitiet', {
 		chuyenmuc: cm,
 		baiviet: bv,
